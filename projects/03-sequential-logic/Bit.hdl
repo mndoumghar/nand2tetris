@@ -1,0 +1,13 @@
+CHIP Bit {
+    IN in, load;
+    OUT out;
+    PARTS:
+    Mux(a=out, b=in, sel=load, out=muxOut);
+    DFF(in=muxOut, out=out);
+}
+
+/*
+DFF => Data Flop-Flips Concept  + Clock 
+if load(t)  then out(n+1) = in(n)
+else out(n+1)= out(n)
+*/
