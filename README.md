@@ -1,134 +1,56 @@
+# Nand2Tetris
 
-# 🧠 Nand2Tetris — From NAND to a Fully Working Computer
+Implementation of the Nand2Tetris course projects: building a computer from
+a single NAND gate up through logic gates, arithmetic, memory, and machine
+language.
 
-> Building a complete computer system from first principles — starting from a single NAND gate and ending with a functional CPU & architecture.
+## Status
 
----
+| Stage | Description                  | Status      |
+|-------|-------------------------------|-------------|
+| 01    | Logic Gates                   | Complete    |
+| 02    | Arithmetic / ALU              | Complete    |
+| 03    | Sequential Logic (Registers, RAM) | Complete |
+| 04    | Machine Language               | In progress |
+| 05    | CPU                            | Not started |
+| 06    | Assembler                      | Not started |
+| 07+   | VM, Compiler, OS                | Not started |
 
-## ⚡ Overview
-
-This repository contains my implementation of the **Nand2Tetris** course projects.
-The goal is to progressively construct a full computer system, starting from basic logic gates and moving all the way up to CPU design and memory systems.
-
-Everything is built from scratch using **Hardware Description Language (HDL)**.
-
----
-
-## 🏗️ System Architecture Progression
-
-```
-NAND Gate
-   ↓
-Logic Gates (AND, OR, NOT, XOR)
-   ↓
-Arithmetic Circuits (Adders, ALU)
-   ↓
-Sequential Logic (Registers, Memory)
-   ↓
-CPU (Control + Data Path)
-   ↓
-Computer System
-   ↓
-Operating System (Future stage)
-```
-
----
-
-## 📁 Repository Structure
+## Structure
 
 ```
 projects/
-├── 01-logic-gates/
-│   ├── Basic Gates (AND, AND16, OR16, OR8Way, Not16, OR, NOT, XOR)
-│   ├── Multi-bit Gates => (MUX, MUX16, MUX8Way16)
-│   └── Multiplexers & Demultiplexers => (DMUX, DMUX4Way, DMUX8Way)
-│
-├── 02-arithmetic/
-│   ├── HalfAdder / FullAdder
-│   ├── (Add16, Inc16)
-│   ├── Incrementer (Inc16)
-│   └── ALU (Arithmetic Logic Unit)
-│
+├── 01-logic-gates/         Basic gates: And, Or, Not, Xor, Mux, DMux (and 16-bit / multi-way variants)
+├── 02-arithmetic/          HalfAdder, FullAdder, Add16, Inc16, ALU
+├── 03-sequential-logic/    Bit, Register, RAM8, RAM64
+└── 04-Machine-Language/    Hack assembly programs (Mult.asm, Fill.asm)
 ```
 
----
+Each chip has three files:
+- `.hdl` — the implementation
+- `.tst` — the test script
+- `.cmp` — the expected output, used to verify correctness
 
-## 🧩 Project Breakdown
+## Tools
 
-### 🔹 01 — Logic Gates
+- HDL (Hardware Description Language) — used to define each chip
+- Nand2Tetris Hardware Simulator — runs the `.tst` scripts against each `.hdl` file
+- Hack Assembly — used from Stage 04 onward
 
-Built using only NAND as a primitive gate.
+## Running tests
 
-* AND / OR / NOT / XOR
-* Mux / DMux
-* 16-bit variants
-* Multi-way selectors
+Open the relevant `.tst` file in the Hardware Simulator and run it. A pass
+means the chip's output matches the `.cmp` file exactly.
 
-### 🔹 02 — Arithmetic Logic Unit (ALU)
+## Current work
 
-Core computational unit of the CPU:
+Stage 04 (Machine Language) has just started. `Mult.asm` and `Fill.asm` are
+the first two assembly programs — multiplication via repeated addition, and
+screen fill on keypress.
 
-* Half Adder / Full Adder design
-* 16-bit addition
-* Incrementer (Inc16)
-* Full ALU supporting:
+## Roadmap
 
-  * Addition
-  * Bitwise AND
-  * Zero / Negation control logic
-
----
-
-## 🛠 Tech Stack
-
-* **HDL (Hardware Description Language)** — chip design
-* **Hardware Simulator** — testbench execution
-* **Binary logic simulation**
-
----
-
-## 📊 Progress Tracker
-
-* [x] 01 — Logic Gates
-* [x] 02 — Arithmetic / ALU
----
-
-## 🎯 Key Concepts Learned
-
-* Boolean algebra from first principles
-* Combinational vs sequential logic
-* Hardware abstraction layers
-* CPU datapath design
-* Low-level computation model
-
----
-
-## 🧠 Big Picture
-
-This project is basically:
-
-> “Rebuilding modern computing from zero knowledge — only NAND.”
-
----
-
-## 🚀 Future Work 
-
-* Complete CPU design
-* Build RAM + memory hierarchy
-* Implement machine language
-* Move toward OS-level abstraction
-
----
-
-##  Notes
-
-All chips are implemented and tested manually using HDL simulation scripts provided by the course.
-
----
-
-##  Optional Upgrades
-
-* Add CI pipeline for HDL testing
-* Include CPU architecture diagrams
-* Add simulation screenshots/GIFs
-* Modular docs per project stage
+- Finish Stage 04 (Machine Language)
+- Build the CPU (Stage 05)
+- Build the Assembler (Stage 06)
+- Continue toward the VM translator +  compiler and OS
